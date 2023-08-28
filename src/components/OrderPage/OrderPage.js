@@ -1,9 +1,10 @@
 /**
  * Might need API call to validate zipcode based on region
  */
+import { Link } from "react-router-dom";
 import DataCollection from "../../Service/Data/DataCollection";
 import DeliveryDate from "./DeliveryDate/DeliveryDate";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
@@ -60,6 +61,7 @@ const OrderPage = ({
 }) => {
   const navigate = useNavigate();
 
+  const { type } = useParams();
   // For pop up if something is missing
   const [show, setShow] = useState(false);
   const [msg, setMsg] = useState("");
@@ -125,40 +127,40 @@ const OrderPage = ({
           // console.log("Error sending zipcode:: " + err);
         });
       handleDisplay("We're soon coming to your area. Stay tuned!");
-    } else if (numMeals === "Select Plan") {
-      handleDisplay("Select Plan");
-    }
-    // else if (freq === "Select Frequency") {
-    // handleDisplay("Select Frequency");
-    // }
-    else if (delivDate === "Select Date") {
-      handleDisplay("Select Date");
-    } else {
-      const now = new Date();
-      const options = { timeZone: "America/New_York" };
-      const time = now.toLocaleString("en-US", options);
-      const userinfo = userSession.isLoggedIn() && userSession.getUser().id!=="improper"
-        ? userSession.getUser().emailAddress
-        : "Anon";
+      // } else if (numMeals === "Select Plan") {
+      //   handleDisplay("Select Plan");
+      // }
+      // else if (freq === "Select Frequency") {
+      // handleDisplay("Select Frequency");
+      // }
+      // else if (delivDate === "Select Date") {
+      //   handleDisplay("Select Date");
+      // } else {
+      // const now = new Date();
+      // const options = { timeZone: "America/New_York" };
+      // const time = now.toLocaleString("en-US", options);
+      // const userinfo = userSession.isLoggedIn() && userSession.getUser().id!=="improper"
+      //   ? userSession.getUser().emailAddress
+      //   : "Anon";
 
-      const dataToSend = {
-        sessionID: userSession.getSessionID(),
-        timeOfRecord: time,
-        userInfo: userinfo,
-        zipCode: zipCode,
-        mealSize: numMeals,
-        deliveryDateSelected: delivDate,
-        activity: "Pick Meals Button Clicked",
-      };
+      // const dataToSend = {
+      //   sessionID: userSession.getSessionID(),
+      //   timeOfRecord: time,
+      //   userInfo: userinfo,
+      //   zipCode: zipCode,
+      //   mealSize: numMeals,
+      //   deliveryDateSelected: delivDate,
+      //   activity: "Pick Meals Button Clicked",
+      // };
 
-      // Send DATA FOR COLLECTION
-      DataCollectionAPIService.orderPageDataCollect(dataToSend)
-        .then((res) => {})
-        .catch((err) => {});
+      // // Send DATA FOR COLLECTION
+      // DataCollectionAPIService.orderPageDataCollect(dataToSend)
+      //   .then((res) => {})
+      //   .catch((err) => {});
 
-      // move to pickMeals page
-      setResetOrderPageInfo(0);
-      setMealNumbers([]);
+      // // move to pickMeals page
+      // setResetOrderPageInfo(0);
+      // setMealNumbers([]);
       navigate("/pickMeals");
     }
   };
@@ -220,7 +222,7 @@ const OrderPage = ({
 
               <Row>
                 {/* Plan Size */}
-                <Col style={{ marginBottom: "35px" }}>
+                {/* <Col style={{ marginBottom: "35px" }}>
                   <h2 className="text-center">Plan Size</h2>
                   <h6 className="text-center">Each meal is made for 1 adult</h6>
 
@@ -263,7 +265,7 @@ const OrderPage = ({
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                </Col>
+                </Col> */}
 
                 {/* Freq */}
                 {/* <Col style={{ marginBottom: "35px" }}>
@@ -305,13 +307,13 @@ const OrderPage = ({
                 </Col> */}
 
                 {/* Delivery Date */}
-                <Col style={{ marginBottom: "55px" }}>
+                {/* <Col style={{ marginBottom: "55px" }}>
                   <h2 className="text-center">Delivery</h2>
                   <h6 className="text-center">
                     Deliveries between 1pm - 2:30pm
                   </h6>
                   <div className="d-flex align-items-center justify-content-center">
-                    {/* <Dropdown>
+                    <Dropdown>
                       <Dropdown.Toggle
                         variant="dark"
                         id="dropdown-basic"
@@ -340,18 +342,18 @@ const OrderPage = ({
                           <span>Friday</span>
                         </Dropdown.Item>
                       </Dropdown.Menu>
-                    </Dropdown> */}
+                    </Dropdown>
 
                     <DeliveryDate
                       delivDate={delivDate}
                       setDelivDate={setDelivDate}
                     />
                   </div>
-                </Col>
+                </Col> */}
               </Row>
 
               {/* Pick Meals Button */}
-              <div className="d-flex justify-content-center align-items-center">
+              {/* <div className="d-flex justify-content-center align-items-center">
                 <Button
                   variant="secondary"
                   className="text-primary"
@@ -363,8 +365,16 @@ const OrderPage = ({
                   }}
                   onClick={handlePickMeals}
                 >
-                  Pick Meals
+                  Continue
                 </Button>
+              </div> */}
+
+              <div class="container justify-content-center text-center">
+                <Link to="/chefs">
+                  <button class="btn btn-dark btn-lg btn-block">
+                    Continue
+                  </button>
+                </Link>
               </div>
             </Container>
           </div>

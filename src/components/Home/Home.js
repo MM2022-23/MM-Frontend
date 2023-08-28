@@ -27,6 +27,8 @@ const Home = ({
   setMealNumbers,
   scrollFAQ,
   setScrollFAQ,
+  type,
+  setType
 }) => {
   const useLoc = useLocation();
 
@@ -121,7 +123,7 @@ const Home = ({
       </Helmet>
       <Banner />
       {/* Log In & Sign Up Button */}
-      <Showcase loggedIn={loggedIn} setLogIn={setLogIn} />
+      <Showcase loggedIn={loggedIn} setLogIn={setLogIn} type={type} setType={setType} />
 
       {/* How you save time */}
       <InformationGrid data={saveTime} />

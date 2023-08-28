@@ -1,4 +1,4 @@
-import {Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
 import LogInPopUP from "../../NavBar/LogInPopUp/LogInPopUp";
@@ -6,7 +6,7 @@ import SignUpPopUp from "../../NavBar/SignUpPopUp/SignUpPopUp";
 import background from "../../../Resources/Background/newBackground.png";
 import "./Showcase.css";
 import userSession from "../../../Service/Data/userSession";
-const Showcase = ({ loggedIn, setLogIn }) => {
+const Showcase = ({ loggedIn, setLogIn, type,setType}) => {
   return (
     <section
       className="bg-primary text-primary p-5 p-lg-0 pt-lg-5 text-center text-sm-start backgroundImage"
@@ -24,21 +24,18 @@ const Showcase = ({ loggedIn, setLogIn }) => {
             <div className="bigTexts">
               {/* Text 1 */}
               <div className="text-primary">
-                <strong>Ready to Eat</strong>
+                <strong>Flavor Quests</strong>
               </div>
 
-              {/* Text 2 */}
-              {/* <div className="text-primary">
-                <strong>All In One </strong>
-              </div> */}
+             
 
               <div className="text-primary">
-                <strong>Delivered</strong>
+                <strong>Diverse</strong>
               </div>
 
               {/* Text 3 */}
               <div className="text-primary">
-                <strong>Indian Meals</strong>
+                <strong>Tasty Bites</strong>
               </div>
             </div>
 
@@ -53,47 +50,31 @@ const Showcase = ({ loggedIn, setLogIn }) => {
               </span>
             </div>
 
-            {/* ONLY if user not logged in  */}
-            {(!loggedIn || userSession.getUser().id==="improper") ? (
-              <div className="row align-items-center justify-content-between my-4">
-                <div className="col-md">
-                  {/* Sign Up Button */}
-                  <SignUpPopUp
-                    style={{ buttonColor: "secondary", textColor: "white" }}
-                    setLogIn={setLogIn}
-                  />
-                </div>
-                <div className="col-md buttonsSpacing">
-                  {/* Log In Button */}
-                  <LogInPopUP
-                    style={{ buttonColor: "secondary", textColor: "white" }}
-                    setLogIn={setLogIn}
-                  />
-                </div>
-              </div>
-            ) : (
+           
+       
               <Row className="my-2">
                 <Col>
-                  <div className="d-flex justify-content-center align-items-center">
-                    {/* Link to order page */}
+
+                  <div class="container">
                     <Link to="/order">
-                      <Button
-                        variant="primary"
-                        className="text-dark"
-                        style={{
-                          height: "50px",
-                          width: "150px",
-                          borderRadius: "15px",
-                          fontSize: "25px",
-                        }}
-                      >
-                        Order
-                      </Button>
+                      <button class="btn btn-primary btn-lg btn-block">
+                        Meals/Tiffins
+                      </button>
+                    </Link>
+                  </div>
+                </Col>
+                <Col>
+                  
+                  <div class="container">
+                    <Link to="/order">
+                      <button onClick={setType("caters")}class="btn btn-primary btn-lg btn-block">
+                        Caters
+                      </button>
                     </Link>
                   </div>
                 </Col>
               </Row>
-            )}
+     
           </div>
         </div>
       </div>

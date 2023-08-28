@@ -25,23 +25,21 @@ import AdminPortal from "./components/AdminPortal/AdminPortal";
 import ReactGA from "react-ga4";
 import { TRACKINGID } from "./Service/Constants";
 import DA from "./components/DA/DA";
+import MealsChefList from "./components/ChefLists/MealsChefList";
+import Chef from "./components/ChefLists/Chef/Chef";
 
 ReactGA.initialize(TRACKINGID);
 function App() {
   useEffect(() => {
-
-    const handleBeforeUnload = ()=>{
+    const handleBeforeUnload = () => {
       userSession.removeSessionID();
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-
-
-
   }, []);
   // Nav, Home
   const [loggedIn, setLogIn] = useState(userSession.isLoggedIn());
@@ -66,6 +64,7 @@ function App() {
   const [cartPrice, setCartPrice] = useState(0);
   const [numMealsSelected, setNumMealsSelected] = useState(0);
 
+  const [type, setType] = useState("meals");
   // Scroll
   const [scrollFAQ, setScrollFAQ] = useState(false);
 
@@ -118,6 +117,8 @@ function App() {
               setMealNumbers={setMealNumbers}
               scrollFAQ={scrollFAQ}
               setScrollFAQ={setScrollFAQ}
+              type={type}
+              setType={setType}
             />
           )}
         />
@@ -154,6 +155,9 @@ function App() {
             />
           )}
         />
+        <Route exact path="/chefs" element={navAndFoot(<MealsChefList />)} />
+
+        <Route exact path="/chefs/:id" element={navAndFoot(<Chef/>)} />
 
         {/* PickMeals page */}
         <Route
@@ -197,7 +201,7 @@ function App() {
         <Route exact path="/admin" element={<AdminPortal />} />
 
         {/* DA Page */}
-        <Route exact path="/jhtkd$!2" element={<DA/>} />
+        <Route exact path="/jhtkd$!2" element={<DA />} />
 
         {/* Privacy Policy */}
         <Route exact path="/privacy" element={navAndFoot(<PrivacyPolicy />)} />
@@ -228,6 +232,8 @@ function App() {
               setMealNumbers={setMealNumbers}
               scrollFAQ={scrollFAQ}
               setScrollFAQ={setScrollFAQ}
+              type={type}
+              setType={setType}
             />
           )}
         />
