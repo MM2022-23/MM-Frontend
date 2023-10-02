@@ -27,6 +27,7 @@ import { TRACKINGID } from "./Service/Constants";
 import DA from "./components/DA/DA";
 import MealsChefList from "./components/ChefLists/MealsChefList";
 import Chef from "./components/ChefLists/Chef/Chef";
+import Profile from "./components/Profile/Profile";
 
 ReactGA.initialize(TRACKINGID);
 function App() {
@@ -119,6 +120,8 @@ function App() {
               setScrollFAQ={setScrollFAQ}
               type={type}
               setType={setType}
+              zipCode={zipCode}
+              setZipCode={setZipCode}
             />
           )}
         />
@@ -157,12 +160,32 @@ function App() {
         />
         <Route exact path="/chefs" element={navAndFoot(<MealsChefList />)} />
 
-        <Route exact path="/chefs/:id" element={navAndFoot(<Chef/>)} />
+        <Route exact path="/profile" element={navAndFoot(<Profile />)} />
+
+        {/* <Route
+          exact
+          path="/chef/:id"
+          element={navAndFoot(
+            <Chef
+              zipCode={zipCode}
+              cart={cart}
+              setCart={setCart}
+              totalPrice={totalPrice}
+              setTotalPrice={setTotalPrice}
+              numMealsSelected={numMealsSelected}
+              setNumMealsSelected={setNumMealsSelected}
+              numMeals={numMeals}
+              cartPrice={cartPrice}
+              setCartPrice={setCartPrice}
+            />
+          )}
+        /> */}
 
         {/* PickMeals page */}
         <Route
-          exact
-          path="/pickMeals"
+          // exact
+          // path="/pickMeals"
+          path="/chef/:id"
           element={navAndFoot(
             <PickMeals
               zipCode={zipCode}

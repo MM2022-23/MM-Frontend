@@ -2,7 +2,7 @@
 @media screen and (width<=280px) {
   .logoAdjustment {
     height: 60px;
-    width: 133.32px;
+    width: 73.32px;
   }
   .fontAdjustment {
     font-size: 27px;
@@ -26,7 +26,8 @@
 @media screen and (width>376px) and (width<=420px) {
   .logoAdjustment {
     height: 60px;
-    width: 133.32px;
+    width: 73.32px;
+    border-radius: 8px;
   }
 
   .fontAdjustment {

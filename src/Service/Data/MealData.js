@@ -4,7 +4,7 @@ class MealData {
   data = [
     {
       id: 0,
-      img: require("../../Resources/Meals/Palak Paneer.jpg"),
+      img: "Palak Paneer.jpg",
       mealName: "Palak Paneer",
       description:
         "Soft paneer (a type of Indian cheese) cubes cooked in a creamy spinach gravy.",
@@ -20,7 +20,7 @@ class MealData {
 
     {
       id: 1,
-      img: require("../../Resources/Meals/Paneer Tikka.jpg"),
+      img: "Paneer Tikka.jpg",
       mealName: "Paneer Tikka",
       description:
         "Marinated cubes of paneer (a type of Indian cheese) that are simmered in a rich and creamy tomato-based gravy.",
@@ -37,7 +37,7 @@ class MealData {
 
     {
       id: 2,
-      img: require("../../Resources/Meals/Chana Masala.jpg"),
+      img: "Chana Masala.jpg",
       mealName: "Chana Masala",
       description: "Chickpeas cooked in a spicy and tangy tomato-based gravy.",
       content: [
@@ -51,7 +51,7 @@ class MealData {
 
     {
       id: 3,
-      img: require("../../Resources/Meals/Aloo Gobi.jpg"),
+      img: "Aloo Gobi.jpg",
       mealName: "Bazigar Aloo Gobi",
       description:
         "A dry curry made with potatoes (aloo) and cauliflower (gobi) that are cooked together with a blend of aromatic spices.",
@@ -65,7 +65,7 @@ class MealData {
     },
     {
       id: 4,
-      img: require("../../Resources/Meals/Baigan Bharta.jpg"),
+      img: "Baigan Bharta.jpg",
       mealName: "Best Baigan Bharta",
       description:
         "Grilled eggplant minced into curry consisting of authentic herbs and spices.",
@@ -79,7 +79,7 @@ class MealData {
     },
     {
       id: 5,
-      img: require("../../Resources/Meals/Rajma.jpg"),
+      img: "Rajma.jpg",
       mealName: "Royal Rajma Express",
       description:
         "Kidney beans cooked in a spicy and tangy tomato-based gravy along with onions and spices.",
@@ -93,7 +93,7 @@ class MealData {
     },
     {
       id: 6,
-      img: require("../../Resources/Meals/MangoDolly.png"),
+      img: "MangoDolly.png",
       mealName: "Mango Dolly",
       description: "Delightfully creamy vanilla ice cream bar enveloped in a mango coating",
       content: ["Mango dolly"],
@@ -101,7 +101,7 @@ class MealData {
     },
     {
       id: 7,
-      img: require("../../Resources/Meals/ChocoBar.png"),
+      img: "ChocoBar.png",
       mealName: "Chocobar",
       description: "Savory ice cream bar with a vanilla ice cream center and chocolate exterior",
       content: ["Chocobar"],

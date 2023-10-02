@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { chefs } from "../../Service/Constants";
 import {
   MDBCard,
   MDBCardBody,
@@ -8,53 +9,12 @@ import {
   MDBCardText,
   MDBBtn,
 } from "mdbreact";
-
+import { useEffect } from "react";
+import ScrollTop from "../../Service/Misc/ScrollTop";
 const MealsChefList = () => {
-  const chefs = [
-    {
-      id: "1",
-      name: "Ramesh Mathur",
-      profileImage:
-        "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp",
-      description: "Gujarati Dishes",
-    },
-    {
-      id: "2",
-      name: "Suresh Dhura",
-      profileImage:
-        "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp",
-      description: "Punjabi Dishes",
-    },
-    {
-      id: "2",
-      name: "Suresh Dhura",
-      profileImage:
-        "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp",
-      description: "Punjabi Dishes",
-    },
-    {
-      id: "2",
-      name: "Suresh Dhura",
-      profileImage:
-        "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp",
-      description: "Punjabi Dishes",
-    },
-    {
-      id: "2",
-      name: "Suresh Dhura",
-      profileImage:
-        "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp",
-      description: "Punjabi Dishes",
-    },
-    {
-      id: "2",
-      name: "Suresh Dhura",
-      profileImage:
-        "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp",
-      description: "Punjabi Dishes",
-    },
-  ];
-
+  useEffect(() => {
+    ScrollTop.scrollUp();
+  }, []);
   const tempList = () => {
     return (
       <div class="card" style={{ width: "18rem" }}>
@@ -83,7 +43,7 @@ const MealsChefList = () => {
                   <div class="row">
                     <div class="col-lg-4 justify-content-center align-items-center mb-4 mb-lg-0">
                       <img
-                        src={chef.profileImage}
+                        src={chef.imgSrc}
                         class="rounded-circle img-fluid shadow-1"
                         alt="woman avatar"
                         width="200"
@@ -91,12 +51,14 @@ const MealsChefList = () => {
                       />
                     </div>
                     <div class="col-lg-8">
-                      <p class="text-muted fw-light mb-4">{chef.description}</p>
+                      <p class="text-muted fw-light mb-4">
+                        {chef.description1}
+                      </p>
                       <p class="fw-bold lead mb-2">
                         <strong>{chef.name}</strong>
                       </p>
                       <div class="row">
-                        <Link to={`/chefs/${chef.id}`}>
+                        <Link to={`/chef/${chef.id}`}>
                           <button class="btn btn-dark text-center justify-content-center">
                             View
                           </button>

@@ -143,74 +143,11 @@ const ShoppingCart = ({
    * STRIP INTEGRATION
    */
   const handleCheckOut = () => {
-    // console.log(`numMeals:: ${numMeals};;; Selected::: ${numMealsSelected}`);
-    // not enough meals selected
-    if (numMeals === "8+ meals" && numMealsSelected < 8) {
+    if (numMealsSelected <= 0) {
       setTitleEnough("Not Enough Meals selected!!");
-      setBodyEnough(<p>Select at least 8 meals</p>);
+      setBodyEnough(<p>Select at least 1 meal</p>);
       setDisplayEnoughPopUp(true);
-    } else if (parseInt(numMeals[0]) > numMealsSelected) {
-      setTitleEnough("Not Enough Meals selected!!");
-      setBodyEnough(<p>Select at least {numMeals[0]} meals</p>);
-      setDisplayEnoughPopUp(true);
-    } 
-    // else if (
-    //   !userSession.isLoggedIn() ||
-    //   userSession.getUser().id === "improper"
-    // ) {
-    //   setTitle("LogIn/SignUp");
-    //   setBody(
-    //     <div
-    //       className="container align-items-center d-flex justify-content-center"
-    //       style={{ fontFamily: "Signika" }}
-    //     >
-    //       <form style={{ padding: "20px" }} className="rounded">
-    //         <Row className="">
-    //           <div className="form-group">
-    //             <label htmlFor="exampleInputEmail1" className="mb-4">
-    //               <p className="lead">Log in or Sign Up to continue</p>
-    //             </label>
-    //           </div>
-    //         </Row>
-
-    //         <div className="container text-center mt-4 mb-4">
-    //           <button
-    //             onClick={(e) => handleNoSignUp(e)}
-    //             className="text-primary mx-2"
-    //             style={{
-    //               backgroundColor: "rgb(212,106,25)",
-    //               borderRadius: "10px",
-    //               border: "0",
-    //               height: "45px",
-    //               width: "100px",
-    //               fontSize: "15px",
-    //             }}
-    //           >
-    //             Skip Sign Up
-    //           </button>
-    //         </div>
-
-    //         <div className="container text-center mb-4">
-    //           <LogInPopUP
-    //             style={{ buttonColor: "secondary", textColor: "white" }}
-    //             setLogIn={setLogIn}
-    //           />
-    //         </div>
-
-    //         <div className="container text-center">
-    //           <SignUpPopUp
-    //             style={{ buttonColor: "secondary", textColor: "white" }}
-    //             setLogIn={setLogIn}
-    //           />
-    //         </div>
-    //       </form>
-    //     </div>
-    //   );
-    //   (!userSession.isLoggedIn() || userSession.getUser().id === "improper") &&
-    //     setDisplayPopUp(true);
-    // } 
-    else {
-      // document.getElementById("hiddenPaymentButton").click();
+    } else {
       setDisplayPopUp(false);
       setDisplayUpSale(true);
     }
@@ -263,7 +200,7 @@ const ShoppingCart = ({
                       <span>{item.mealName}</span>
                       <br></br>
                       <button
-                        variant="light"
+                        className="bg-primary text-light"
                         onClick={() => remove(item.id)}
                         style={{
                           borderRadius: "30px",
@@ -290,12 +227,12 @@ const ShoppingCart = ({
                       </span>
 
                       <button
-                        variant="light"
+                        className="bg-primary text-light"
                         onClick={() => add(item.id)}
                         style={{
                           borderRadius: "30px",
                           border: "0px",
-                          backgroundColor: "rgb(247, 193, 68)",
+                          // backgroundColor: "rgb(247, 193, 68)",
                         }}
                       >
                         <span
@@ -313,28 +250,6 @@ const ShoppingCart = ({
             <h5 className="text-center mt-4">{`${
               "Meals Total $" + cartPrice
             }`}</h5>
-            <h5 className="text-center mt-2">{`${
-              "Delivery $" + zipCodeService.isValidZipCode(zipCode)
-            }`}</h5>
-            <h5 className="text-center mt-2">{`${
-              "Taxes $" +
-              Math.round(
-                (cartPrice + zipCodeService.isValidZipCode(zipCode)) *
-                  0.06625 *
-                  100
-              ) /
-                100
-            }`}</h5>
-            <h5 className="text-center mt-2">{`${
-              "Total $" +
-              Math.round(
-                ((cartPrice + zipCodeService.isValidZipCode(zipCode)) *
-                  0.06625 +
-                  (cartPrice + zipCodeService.isValidZipCode(zipCode))) *
-                  100
-              ) /
-                100
-            }`}</h5>
             <div className="h-45 d-flex align-items-center justify-content-center">
               <button
                 onClick={() => {
@@ -342,9 +257,9 @@ const ShoppingCart = ({
 
                   handleClose();
                 }}
-                className="text-dark"
+                className="text-light bg-dark"
                 style={{
-                  backgroundColor: "rgb(247, 193, 68)",
+                  // backgroundColor: "rgb(247, 193, 68)",
                   border: "0px",
                   height: "45px",
                   width: "145px",
@@ -358,9 +273,9 @@ const ShoppingCart = ({
               {/* <Link to="/checkOut" style={{ marginLeft: "24px" }}> */}
               <button
                 onClick={() => handleCheckOut()}
-                className="text-dark"
+                className="text-light bg-dark"
                 style={{
-                  backgroundColor: "rgb(247, 193, 68)",
+                  // backgroundColor: "rgb(247, 193, 68)",
                   border: "0px",
                   height: "45px",
                   width: "145px",
@@ -394,9 +309,9 @@ const ShoppingCart = ({
                   handleClose();
                   navigate("/order");
                 }}
-                className="text-dark"
+                className="text-light bg-dark"
                 style={{
-                  backgroundColor: "rgb(247, 193, 68)",
+                  // backgroundColor: "rgb(247, 193, 68)",
                   border: "0px",
                   height: "45px",
                   width: "145px",
@@ -433,6 +348,7 @@ const ShoppingCart = ({
         cart={cart}
         setCart={setCart}
         mealNumbers={mealNumbers}
+        setMealNumbers={setMealNumbers}
         cartPrice={cartPrice}
         setCartPrice={setCartPrice}
         setNumMealsSelected={setNumMealsSelected}

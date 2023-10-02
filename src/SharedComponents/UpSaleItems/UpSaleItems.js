@@ -112,132 +112,133 @@ const UpSaleItems = ({
     });
     setMealNumbers(newAr); // Update mealNumbers to display correct quantity numbers in cart AND pickMeals page
   };
-  const remove = (id) => {
-    // console.log("Remove clicked...");
-    // CANNOT have quantity < 0
-    if (mealNumbers[id] > 0) {
-      // if (countSelected === 0) {
-      //   setProceedText("No Thanks, Proceed");
-      // }
-      try {
-        setCartPrice(
-          (cartPrice) =>
-            Math.round(
-              (cartPrice - MealData.getAllItems()[id].price + Number.EPSILON) *
-                100
-            ) / 100
-        );
-      } catch (Err) {
-        // console.log(JSON.stringify(MealData.getAllItems()));
-      }
-      mealNumbers[id]--; // decrement quantity in mealNumbers at index "id"
-      const newAr = [];
-      mealNumbers.map((item) => {
-        newAr.push(item);
-      });
-      setMealNumbers(newAr); // update mealNumbers
 
-      if (mealNumbers[id] === 0) {
-        // if item is reduced to 0 in cart, cart should be updated so we don't have an item in cart whose quantity = 0
-        const tempCart = [];
-        cart.forEach((element) => {
-          if (element.id !== id) {
-            tempCart.push(element);
-          }
-        });
-        setCart(tempCart);
-      }
-    }
-  };
+  // const remove = (id) => {
+  //   // console.log("Remove clicked...");
+  //   // CANNOT have quantity < 0
+  //   if (mealNumbers[id] > 0) {
+  //     // if (countSelected === 0) {
+  //     //   setProceedText("No Thanks, Proceed");
+  //     // }
+  //     try {
+  //       setCartPrice(
+  //         (cartPrice) =>
+  //           Math.round(
+  //             (cartPrice - MealData.getAllItems()[id].price + Number.EPSILON) *
+  //               100
+  //           ) / 100
+  //       );
+  //     } catch (Err) {
+  //       // console.log(JSON.stringify(MealData.getAllItems()));
+  //     }
+  //     mealNumbers[id]--; // decrement quantity in mealNumbers at index "id"
+  //     const newAr = [];
+  //     mealNumbers.map((item) => {
+  //       newAr.push(item);
+  //     });
+  //     setMealNumbers(newAr); // update mealNumbers
 
-  const handleNoSignUp = (e) => {
-    e.preventDefault();
-    // No sign up clicked from pick meals
-    DataCollection.registerActivity(
-      "SignUpPopUp",
-      `Sign Up Skipped after clicking No Thanks, Continue: ${
-        userSession.isLoggedIn() && userSession.getUser().id !== "improper"
-          ? userSession.getUser().emailAddress
-          : "Anon"
-      }`
-    );
+  //     if (mealNumbers[id] === 0) {
+  //       // if item is reduced to 0 in cart, cart should be updated so we don't have an item in cart whose quantity = 0
+  //       const tempCart = [];
+  //       cart.forEach((element) => {
+  //         if (element.id !== id) {
+  //           tempCart.push(element);
+  //         }
+  //       });
+  //       setCart(tempCart);
+  //     }
+  //   }
+  // };
 
-    const userLoggedIn = {
-      id: "improper",
-    };
-    userSession.addUser(userLoggedIn);
-    setShowSignUpLogIn(false);
-    // document clicked!
-    setDisplayPopUp(false);
-    document.getElementById("hiddenPaymentButton").click();
-  };
+  // const handleNoSignUp = (e) => {
+  //   e.preventDefault();
+  //   // No sign up clicked from pick meals
+  //   DataCollection.registerActivity(
+  //     "SignUpPopUp",
+  //     `Sign Up Skipped after clicking No Thanks, Continue: ${
+  //       userSession.isLoggedIn() && userSession.getUser().id !== "improper"
+  //         ? userSession.getUser().emailAddress
+  //         : "Anon"
+  //     }`
+  //   );
+
+  //   const userLoggedIn = {
+  //     id: "improper",
+  //   };
+  //   userSession.addUser(userLoggedIn);
+  //   setShowSignUpLogIn(false);
+  //   // document clicked!
+  //   setDisplayPopUp(false);
+  //   document.getElementById("hiddenPaymentButton").click();
+  // };
 
   const handleProceed = (e) => {
-    e.preventDefault();
-    DataCollection.registerActivity(
-      "UpSaleItmes",
-      `Clicked No Thanks, Continue (or Proceed) frm UpSale: ${
-        !userSession.isLoggedIn() || userSession.getUser().id === "improper"
-          ? "Anon"
-          : userSession.getUser().emailAddress
-      }`
-    );
-    if (!userSession.isLoggedIn() || userSession.getUser().id === "improper") {
-      // user not logged in
-      setSignUpLogInBody(
-        <div
-          className="container align-items-center d-flex justify-content-center"
-          style={{ fontFamily: "Signika" }}
-        >
-          <form style={{ padding: "20px" }} className="rounded">
-            <Row className="">
-              <div className="form-group">
-                {/* DO NOT REMOVE: COMMENTED BC UPSALE IS REMOVED */}
-                {/* <label htmlFor="exampleInputEmail1" className="mb-4">
-                  <p className="lead">Log in or Sign Up to continue</p>
-                </label> */}
-              </div>
-            </Row>
+    // e.preventDefault();
+    // DataCollection.registerActivity(
+    //   "UpSaleItmes",
+    //   `Clicked No Thanks, Continue (or Proceed) frm UpSale: ${
+    //     !userSession.isLoggedIn() || userSession.getUser().id === "improper"
+    //       ? "Anon"
+    //       : userSession.getUser().emailAddress
+    //   }`
+    // );
+    // if (!userSession.isLoggedIn() || userSession.getUser().id === "improper") {
+    //   // user not logged in
+    //   setSignUpLogInBody(
+    //     <div
+    //       className="container align-items-center d-flex justify-content-center"
+    //       style={{ fontFamily: "Signika" }}
+    //     >
+    //       <form style={{ padding: "20px" }} className="rounded">
+    //         <Row className="">
+    //           <div className="form-group">
+    //             {/* DO NOT REMOVE: COMMENTED BC UPSALE IS REMOVED */}
+    //             {/* <label htmlFor="exampleInputEmail1" className="mb-4">
+    //               <p className="lead">Log in or Sign Up to continue</p>
+    //             </label> */}
+    //           </div>
+    //         </Row>
 
-            <div className="container text-center mt-4 mb-4">
-              <button
-                onClick={(e) => handleNoSignUp(e)}
-                className="text-primary mx-2"
-                style={{
-                  backgroundColor: "rgb(212,106,25)",
-                  borderRadius: "10px",
-                  border: "0",
-                  height: "45px",
-                  width: "100px",
-                  fontSize: "15px",
-                }}
-              >
-                Skip Sign Up
-              </button>
-            </div>
+    //         <div className="container text-center mt-4 mb-4">
+    //           <button
+    //             onClick={(e) => handleNoSignUp(e)}
+    //             className="text-primary mx-2"
+    //             style={{
+    //               backgroundColor: "rgb(212,106,25)",
+    //               borderRadius: "10px",
+    //               border: "0",
+    //               height: "45px",
+    //               width: "100px",
+    //               fontSize: "15px",
+    //             }}
+    //           >
+    //             Skip Sign Up
+    //           </button>
+    //         </div>
 
-            <div className="container text-center mb-4">
-              <LogInPopUP
-                style={{ buttonColor: "secondary", textColor: "white" }}
-                setLogIn={setLogIn}
-              />
-            </div>
+    //         <div className="container text-center mb-4">
+    //           <LogInPopUP
+    //             style={{ buttonColor: "secondary", textColor: "white" }}
+    //             setLogIn={setLogIn}
+    //           />
+    //         </div>
 
-            <div className="container text-center">
-              <SignUpPopUp
-                style={{ buttonColor: "secondary", textColor: "white" }}
-                setLogIn={setLogIn}
-              />
-            </div>
-          </form>
-        </div>
-      );
-      (!userSession.isLoggedIn() || userSession.getUser().id === "improper") &&
-        setShowSignUpLogIn(true);
-    } else {
-      setDisplayPopUp(false);
-      document.getElementById("hiddenPaymentButton").click();
-    }
+    //         <div className="container text-center">
+    //           <SignUpPopUp
+    //             style={{ buttonColor: "secondary", textColor: "white" }}
+    //             setLogIn={setLogIn}
+    //           />
+    //         </div>
+    //       </form>
+    //     </div>
+    //   );
+    //   (!userSession.isLoggedIn() || userSession.getUser().id === "improper") &&
+    //     setShowSignUpLogIn(true);
+    // } else {
+    setDisplayPopUp(false);
+    document.getElementById("hiddenPaymentButton").click();
+    // }
   };
 
   return (
@@ -315,31 +316,7 @@ const UpSaleItems = ({
             {/* <hr /> */}
 
             {/* Final version below do NOT change it */}
-            <h5 className="text-center mt-4">{`${
-              "Meals Total $" + cartPrice
-            }`}</h5>
-            <h5 className="text-center mt-2">{`${
-              "Delivery $" + zipCodeService.isValidZipCode(zipCode)
-            }`}</h5>
-            <h5 className="text-center mt-2">{`${
-              "Taxes $" +
-              Math.round(
-                (cartPrice + zipCodeService.isValidZipCode(zipCode)) *
-                  0.06625 *
-                  100
-              ) /
-                100
-            }`}</h5>
-            <h5 className="text-center mt-2">{`${
-              "Total $" +
-              Math.round(
-                ((cartPrice + zipCodeService.isValidZipCode(zipCode)) *
-                  0.06625 +
-                  (cartPrice + zipCodeService.isValidZipCode(zipCode))) *
-                  100
-              ) /
-                100
-            }`}</h5>
+            <h5 className="text-center mt-4">{`${"Total $" + cartPrice}`}</h5>
 
             {/* UpSale Item things commented DO NOT REMOVE*/}
             {/* <div className="h-100 d-flex align-items-center justify-content-center">
@@ -356,8 +333,8 @@ const UpSaleItems = ({
 
             <div className="h-100 d-flex align-items-center justify-content-center">
               <Button
-                variant="light"
-                className="text-dark"
+                variant="dark"
+                className="text-light"
                 onClick={(e) => {
                   handleProceed(e);
                 }}
@@ -370,12 +347,12 @@ const UpSaleItems = ({
 
         <Modal.Footer>
           <Button
-            variant="secondary"
+            variant="dark"
             onClick={() => {
               setDisplayPopUp(false);
             }}
           >
-            <span className="text-primary">Close</span>
+            <span className="text-light">Close</span>
           </Button>
         </Modal.Footer>
       </Modal>
@@ -400,15 +377,13 @@ const UpSaleItems = ({
           </Button>
         </Modal.Footer>
       </Modal>
-      {(!userSession.isLoggedIn() ||
-        userSession.getUser().id === "improper") && (
-        <PopUp
-          displayPopUp={showSignUpLogIn}
-          setDisplayPopUp={setShowSignUpLogIn}
-          title={signUpLogInTitle}
-          body={signUpLogInBody}
-        />
-      )}
+
+      <PopUp
+        displayPopUp={showSignUpLogIn}
+        setDisplayPopUp={setShowSignUpLogIn}
+        title={signUpLogInTitle}
+        body={signUpLogInBody}
+      />
     </>
   );
 };

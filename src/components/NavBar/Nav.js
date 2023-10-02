@@ -67,7 +67,7 @@ function NavBar({
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg="secondary"
+      bg="primary"
       variant="light"
       className="fixed-top"
     >
@@ -76,7 +76,7 @@ function NavBar({
         <Navbar.Brand>
           <Nav.Link href="/#">
             <img
-              src={require("../../Resources/Logo/mirchiMealsLogo.png")}
+              src={require("../../Resources/Logo/demoLogo1.png")}
               alt="MirchiMealsLogo"
               className="logoAdjustment"
             />
@@ -84,10 +84,10 @@ function NavBar({
         </Navbar.Brand>
 
         {/* user Profile */}
-        <UserProfile
+        {/* <UserProfile
           setDisplayAccountInfo={setDisplayAccountInfo}
           setLogIn={setLogIn}
-        />
+        /> */}
 
         {/* Shopping cart */}
         <ShoppingCart
@@ -107,8 +107,9 @@ function NavBar({
 
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
+          className="bg-light"
           style={{
-            backgroundColor: "rgb(247, 193, 68)",
+            // backgroundColor: "rgb(247, 193, 68)",
             boxShadow: "2px 1px 3px black",
             height: "36px",
             width: "48px",

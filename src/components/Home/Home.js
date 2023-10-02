@@ -28,7 +28,9 @@ const Home = ({
   scrollFAQ,
   setScrollFAQ,
   type,
-  setType
+  setType,
+  zipCode,
+  setZipCode
 }) => {
   const useLoc = useLocation();
 
@@ -59,17 +61,17 @@ const Home = ({
     }
   }, []);
   const saveTime = {
-    backColor: "primary",
+    backColor: "rgb(12,223,231)",
     headingColor: "dark",
     titleColor: "secondary",
     textColor: "dark",
 
     heading: "How It Works",
-    image1: require("../../Resources/Vector/step1.png"),
+    image1: require("../../Resources/Logo/demoLogo.png"),
     image1Height: "150px",
     image1Width: "250px",
-    title1: "Choose Your Meals and Plan",
-    description1: "Choose a minimum of 2 ready-to-eat meals",
+    title1: "Choose Chefs",
+    description1: "Choose a chef and checkout dishes they offer",
 
     image2: require("../../Resources/Vector/step2.png"),
     image2Width: "250px",
@@ -123,7 +125,7 @@ const Home = ({
       </Helmet>
       <Banner />
       {/* Log In & Sign Up Button */}
-      <Showcase loggedIn={loggedIn} setLogIn={setLogIn} type={type} setType={setType} />
+      <Showcase loggedIn={loggedIn} setLogIn={setLogIn} type={type} setType={setType} zipCode={zipCode} setZipCode={setZipCode}/>
 
       {/* How you save time */}
       <InformationGrid data={saveTime} />

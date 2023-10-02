@@ -17,7 +17,7 @@
   }
 
   .boxing {
-    background-color: rgb(98, 10, 21);
+    background-color: rgba(229, 161, 64,1);
     opacity: 0.91;
     padding: 15px;
     margin-bottom: 55px;
@@ -52,7 +52,7 @@
   }
 
   .boxing {
-    background-color: rgb(98, 10, 21);
+    background-color: rgb(140, 87, 94);
     opacity: 0.91;
     padding: 15px;
     margin-bottom: 55px;
@@ -88,7 +88,7 @@
   }
 
   .boxing {
-    background-color: rgb(98, 10, 21);
+    background-color: rgba(229, 161, 64,1);
     opacity: 0.91;
     padding: 15px;
     /* margin-bottom: 0px; */
@@ -124,7 +124,7 @@
   }
 
   .boxing {
-    background-color: rgb(98, 10, 21);
+    background-color: rgba(229, 161, 64,1);
     opacity: 0.91;
     padding: 15px;
     margin-bottom: 55px;
@@ -159,7 +159,7 @@
 
   .boxing {
     
-    background-color: rgb(98, 10, 21);
+    background-color: rgba(229, 161, 64,1);
     /* background-color: rgb(247, 193, 68); */
     opacity: 1;
     padding-left: 25px;

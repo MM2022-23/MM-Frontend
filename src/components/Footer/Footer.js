@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ScrollTop from "../../Service/Misc/ScrollTop";
 
 const Footer = () => {
   return (
@@ -27,9 +28,14 @@ const Footer = () => {
         </p>
         <p>Credits: pch.vector,Freepik</p>
       </div>
-      <a href="#" class="position-absolute bottom-0 end-0 p-5">
-          <i class="bi bi-arrow-up-circle h1"></i>
-        </a>
+      <a class="position-absolute bottom-0 end-0 p-5">
+        <i
+          class="bi bi-arrow-up-circle h1"
+          onClick={() => {
+            ScrollTop.scrollUp();
+          }}
+        ></i>
+      </a>
     </footer>
   );
 };

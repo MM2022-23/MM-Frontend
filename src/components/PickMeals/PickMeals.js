@@ -22,7 +22,9 @@ import ScrollTop from "../../Service/Misc/ScrollTop";
 import MealData from "../../Service/Data/MealData";
 import UpSaleItems from "../../SharedComponents/UpSaleItems/UpSaleItems";
 import ReactGA from "react-ga4";
+import { chefs } from "../../Service/Constants";
 import Banner from "../Home/Banner/Banner";
+import { useParams } from "react-router-dom";
 const PickMeals = ({
   zipCode,
   cart,
@@ -40,36 +42,17 @@ const PickMeals = ({
 }) => {
   // so we can go back to orderPage
   const navigate = useNavigate();
-  useEffect(() => {
-    // console.log("ZIPCODE ON PM RENDERED::: " + zipCode);
-    // if zipCode not provided, go back to order page
-    if (zipCode.length === 0) {
-      // console.log("NO ZIPCODE; GO BACK TO ORDER AND RESET EVERYTHING");
-      setResetOrderPageInfo(2); // if no zip code; go back to order page and have user fill out all the fields
-      navigate("/order");
-    } else {
-      DataCollection.registerActivity(
-        "Pick Meals",
-        `Viewing Pick Meals: ${
-          userSession.isLoggedIn() && userSession.getUser().id !== "improper"
-            ? userSession.getUser().emailAddress
-            : "Anon"
-        }`
-      );
-      ReactGA.event({
-        category: "Viewing Meals",
-        action: "viewing",
-        label: "Viewing Meals",
-      });
 
-      // scroll up only once when user arrives on this page
-      ScrollTop.scrollUp();
-      if (mealNumbers.length === 0) {
-        setMealNumbers(new Array(MealData.getAllItems().length).fill(0));
-        // console.log("RESETTING CART");
-        // should do this in case of payment success
-      }
+  const { id } = useParams();
+  const chefInfo = chefs[id - 1];
+  useEffect(() => {
+    // scroll up only once when user arrives on this page
+    ScrollTop.scrollUp();
+    if (!mealNumbers || mealNumbers.length === 0) {
+      const temp = new Array(MealData.getAllItems().length).fill(0);
+      setMealNumbers(temp);
     }
+    console.log(`Meal Numbers: ${mealNumbers}`);
   }, []);
 
   const mealList = MealData.getMeals();
@@ -79,6 +62,8 @@ const PickMeals = ({
   const [description, setDescription] = useState("");
   const [mealSelected, setMealSelected] = useState("");
 
+  const [displayUpSale, setDisplayUpSale] = useState(false);
+
   // What if user wants to reset freq, zipcode, etc...?? => we let user go back to OrderPage
   const backToOrderPage = () => {
     setCart([]);
@@ -87,7 +72,7 @@ const PickMeals = ({
     setMealNumbers([]);
     setResetOrderPageInfo(2); // reset everything in orderPage
     // console.log("<== BACK BUTTON CLICKED...");
-    navigate("/order");
+    navigate("/chefs");
   };
 
   // Handles PopUp display
@@ -221,349 +206,287 @@ const PickMeals = ({
     }
   };
 
-  // log in warnin
-  const [displayPopUp, setDisplayPopUp] = useState(false);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-
   const [displayEnoughPopUp, setDisplayEnoughPopUp] = useState(false);
   const [titleEnough, setTitleEnough] = useState("");
   const [bodyEnough, setBodyEnough] = useState("");
 
-  // Upsale Item PopUp State
-  const [displayUpSale, setDisplayUpSale] = useState(false);
-
-  {
-    /* remove this after stripe */
-  }
-  const [successPopUp, setSuccessPopUp] = useState(false);
-  const [successTitle, setSuccessTitle] = useState("");
-  const [successBody, setSuccessBody] = useState("");
-
-  const getMealsData = () => {
-    let tempDict = {};
-    mealNumbers.map((freq, index) => {
-      if (freq > 0) {
-        tempDict[MealData.getMeals()[index].mealName] = freq;
-      }
-    });
-
-    return tempDict;
-  };
-
-  // const handleNoSignUp = (e) => {
-  //   e.preventDefault();
-  //   // No sign up clicked from pick meals
-  //   DataCollection.registerActivity(
-  //     "Pick Meals",
-  //     `Signup skipped from proceed button: ${
-  //       userSession.isLoggedIn() && userSession.getUser().id !== "improper"
-  //         ? userSession.getUser().emailAddress
-  //         : "Anon"
-  //     }`
-  //   );
-
-  //   const userLoggedIn = {
-  //     id: "improper",
-  //   };
-  //   userSession.addUser(userLoggedIn);
-  //   setDisplayPopUp(false);
-  //   setDisplayUpSale(true);
-  // };
   /**
    * send Data to DB for DA purporses
    * STRIP INTEGRATION
    */
   const handleCheckOut = () => {
-    if (numMeals === "8+ meals" && numMealsSelected < 8) {
+    if (numMealsSelected === 0) {
       setTitleEnough("Not Enough Meals selected!!");
-      setBodyEnough(<p>Select at least 8 meals</p>);
+      setBodyEnough(<p>Select at least 1 meal</p>);
       setDisplayEnoughPopUp(true);
-    } else if (parseInt(numMeals[0]) > numMealsSelected) {
-      setTitleEnough("Not Enough Meals selected!!");
-      setBodyEnough(<p>Select at least {numMeals[0]} meals</p>);
-      setDisplayEnoughPopUp(true);
-    }
-    // else if (
-    //   !userSession.isLoggedIn() ||
-    //   userSession.getUser().id === "improper"
-    // ) {
-    //   const now = new Date();
-    //   const options = { timeZone: "America/New_York" };
-    //   const time = now.toLocaleString("en-US", options);
-    //   const dataToSend = {
-    //     sessionID: userSession.getSessionID(),
-    //     timeOfRecord: time,
-    //     userInfo: "User Not logged In",
-    //     zipCode: zipCode,
-    //     specificMeals: JSON.stringify(getMealsData()),
-    //     deliveryDateSelected: delivDate,
-    //     activity: "Proceed Button Clicked",
-    //   };
-
-    //   // Send DATA FOR COLLECTION
-    //   DataCollectionAPIService.pickMealsPageDataCollection(dataToSend)
-    //     .then((res) => {})
-    //     .catch((err) => {});
-
-    //   DataCollection.registerActivity(
-    //     "Pick Meals",
-    //     `Proceed Button Clicked: ${
-    //       userSession.isLoggedIn() && userSession.getUser().id !== "improper"
-    //         ? userSession.getUser().emailAddress
-    //         : "Anon"
-    //     }`
-    //   );
-    //   setTitle("LogIn/SignUp");
-    //   setBody(
-    //     <div
-    //       className="container align-items-center d-flex justify-content-center"
-    //       style={{ fontFamily: "Signika" }}
-    //     >
-    //       <form style={{ padding: "20px" }} className="rounded">
-    //         <Row className="">
-    //           <div className="form-group">
-    //             <label htmlFor="exampleInputEmail1" className="mb-4">
-    //               <p className="lead">Log in or Sign Up to continue</p>
-    //             </label>
-    //           </div>
-    //         </Row>
-
-    //         <div className="container text-center mt-4 mb-4">
-    //           <button
-    //             onClick={(e) => handleNoSignUp(e)}
-    //             className="text-primary mx-2"
-    //             style={{
-    //               backgroundColor: "rgb(212,106,25)",
-    //               borderRadius: "10px",
-    //               border: "0",
-    //               height: "45px",
-    //               width: "100px",
-    //               fontSize: "15px",
-    //             }}
-    //           >
-    //             Skip Sign Up
-    //           </button>
-    //         </div>
-
-    //         <div className="container text-center mb-4">
-    //           <LogInPopUP
-    //             style={{ buttonColor: "secondary", textColor: "white" }}
-    //             setLogIn={setLogIn}
-    //           />
-    //         </div>
-
-    //         <div className="container text-center">
-    //           <SignUpPopUp
-    //             style={{ buttonColor: "secondary", textColor: "white" }}
-    //             setLogIn={setLogIn}
-    //           />
-    //         </div>
-    //       </form>
-    //     </div>
-    //   );
-    //   (!userSession.isLoggedIn() || userSession.getUser().id === "improper") &&
-    //     setDisplayPopUp(true);
-    // }
-    else {
-      const now = new Date();
-      const options = { timeZone: "America/New_York" };
-      const time = now.toLocaleString("en-US", options);
-      const dataToSend = {
-        sessionID: userSession.getSessionID(),
-        timeOfRecord: time,
-        userInfo:
-          userSession.isLoggedIn() && userSession.getUser().id !== "improper"
-            ? userSession.getUser().emailAddress
-            : "Anon",
-        zipCode: zipCode,
-        specificMeals: JSON.stringify(getMealsData()),
-        deliveryDateSelected: delivDate,
-        activity: "Proceed Button Clicked frm Pick Meals Page",
-      };
-
-      // Send DATA FOR COLLECTION
-      DataCollectionAPIService.pickMealsPageDataCollection(dataToSend)
-        .then((res) => {})
-        .catch((err) => {});
-      DataCollection.registerActivity(
-        "Pick Meals",
-        `Proceed Button Clicked: ${
-          userSession.isLoggedIn() && userSession.getUser().id !== "improper"
-            ? userSession.getUser().emailAddress
-            : "Anon"
-        }`
-      );
-      setDisplayPopUp(false);
+    } else {
       setDisplayUpSale(true);
     }
   };
 
   return (
     <>
-      {/* <div className="justify-content-center backButtonContainer"> */}
-      <div className="justify-content-center">
-        <div
-          className="position-fixed text-primary text-center py-1"
-          style={{ backgroundColor: "rgb(98, 10, 21)", width: "100%" }}
-        >
-          Each meal is appropriate for 1 Adult in 1 sitting.
-        </div>
-        <div className="py-5">
-          <Button
-            variant="secondary"
-            // className="position-fixed backButton"
-            className="position-fixed mx-2"
-            onClick={() => backToOrderPage()}
-            style={{
-              fontFamily: "Signika",
-              color: "white",
-              width: "5.5rem",
-              height: "2.5rem",
-            }}
-          >
-            Back
-          </Button>
-        </div>
-      </div>
-      <section style={{ fontFamily: "Signika" }}>
-        <Container className="text-dark my-4 customCss">
-          <Row style={{ marginTop: "px", marginBottom: "32px" }}>
-            {mealList.map((item) => {
-              const { id, img, mealName, description, content, price } = item;
-              return (
-                <Col key={id} className="p-3 spacesBetweenBoxes">
-                  <div className="card-body text-center">
-                    <img src={img} className="img-fluid imageAdjustment" />
-                    {/* <img src={img} className="img-fluid" style={{height:"25vh",width:"50vw"}}/> */}
-                    <h4 className="titleAdjustment">{mealName}</h4>
-                    <h5>
-                      <del className="mx-2">$14.11</del>${price}
-                    </h5>
-                    <Link
-                      onClick={() =>
-                        handleDisplay(content, `Content of "${mealName}" meal`)
-                      }
-                      to=""
-                    >
-                      <p className="text-light descriptionAdjustment">
-                        Contents
-                      </p>
-                    </Link>
-                    <Link
-                      onClick={() => handleDisplay(description, mealName)}
-                      to=""
-                    >
-                      <p className="text-light descriptionAdjustment">
-                        Description
-                      </p>
-                    </Link>
-
-                    <Button
-                      variant="light"
-                      onClick={() => remove(id)}
-                      className="buttonAdjustment"
-                    >
-                      <span className="letterAdjustment">-</span>
-                    </Button>
-
-                    <span className="amountAdjustment">{mealNumbers[id]}</span>
-
-                    <Button
-                      variant="light"
-                      onClick={() => add(id)}
-                      className="buttonAdjustment"
-                    >
-                      <span className="letterAdjustment">+</span>
-                    </Button>
+      <section class="h-100 gradient-custom-2">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+              <div class="card">
+                <div
+                  class="rounded-top text-white d-flex flex-row"
+                  style={{ backgroundColor: "#f5deb3", height: "200px" }}
+                >
+                  <div
+                    class="ms-4 mt-5 d-flex flex-column"
+                    style={{ width: "150px" }}
+                  >
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                      alt="Generic placeholder image"
+                      class="img-fluid img-thumbnail mt-4 mb-2"
+                      style={{ width: "150px", zIndex: "1" }}
+                    />
                   </div>
-                </Col>
-              );
-            })}
+                  <div class="ms-3" style={{ marginTop: "30px" }}>
+                    <h5 className="text-dark">{chefInfo.name}</h5>
+                    <p className="text-secondary">
+                      {chefInfo.locationOfService}
+                    </p>
+                  </div>
+                </div>
 
-            <Modal
-              show={show}
-              onHide={handleClose}
-              style={{ fontFamily: "Signika" }}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>{mealSelected}</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                {/* {Object.keys(description).map((key) => {
-                  return (
-                    <span>
-                      {`${key} : ${description[key]}`}
-                      <br></br>
-                    </span>
-                  );
-                })} */}
-                {description}
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="light" onClick={handleClose}>
-                  Close
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </Row>
+                <div class="card-body p-4 text-black">
+                  <div class="mb-5">
+                    <p class="lead fw-normal mb-1">About</p>
+                    <div class="p-4" style={{ backgroundColor: "#f8f9fa" }}>
+                      <p class="font-italic mb-1">
+                        10+ years of experience in Cooking
+                      </p>
+                      <p class="font-italic mb-1">
+                        Catered for 1000+ ocassions
+                      </p>
+                    </div>
+                  </div>
+                  <p class="lead fw-normal mb-0 text-center">Select Meals</p>
+                  <div class="row g-2">
+                    {mealList.map(
+                      (meal, index) =>
+                        index % 2 === 0 && (
+                          <div className="row g-2" key={`row-${index}`}>
+                            <div className="col">
+                              <img
+                                src={require(`../../Resources/Meals/${meal.img}`)}
+                                alt={`image ${index + 1}`}
+                                className="w-100 rounded-3"
+                              />
+                              <div className="text-center">{meal.mealName}</div>
+                              <Link
+                                onClick={() =>
+                                  handleDisplay(meal.description, meal.mealName)
+                                }
+                                to=""
+                              >
+                                <p
+                                  className="text-dark text-center"
+                                  style={{
+                                    fontSize: "1.2rem",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  Description
+                                </p>
+                              </Link>
 
-          <Row>
-            {/* Only show checkout button if # of item > 0 */}
+                              <div className="mt-1 d-flex flex-column align-items-center">
+                                <div className="mb-2">
+                                  <button
+                                    className="btn btn-primary btn-lg rounded-circle"
+                                    style={{
+                                      minWidth: "40px",
+                                      fontSize: "24px",
+                                    }}
+                                    onClick={() => remove(index)}
+                                  >
+                                    -
+                                  </button>
+                                  <span
+                                    className="mx-2"
+                                    style={{
+                                      fontSize: "2rem",
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    {mealNumbers[index]}
+                                  </span>{" "}
+                                  <button
+                                    className="btn btn-primary btn-lg rounded-circle"
+                                    style={{
+                                      minWidth: "40px",
+                                      fontSize: "24px",
+                                    }}
+                                    onClick={() => add(index)}
+                                  >
+                                    +
+                                  </button>
+                                  <p
+                                    className="text-dark text-center"
+                                    style={{
+                                      fontSize: "1.2rem",
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    12.99
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            {mealList[index + 1] && (
+                              <div className="col">
+                                <img
+                                  src={require(`../../Resources/Meals/${
+                                    mealList[index + 1].img
+                                  }`)}
+                                  alt={`image ${index + 1}`}
+                                  className="w-100 rounded-3"
+                                />
 
-            <div className="h-100 d-flex align-items-center justify-content-center">
-              <Button
-                variant="secondary"
-                className="text-primary checkOutButton"
-                onClick={() => handleCheckOut()}
-              >
-                Proceed
-              </Button>
+                                <div className="text-center">
+                                  {mealList[index + 1].mealName}
+                                </div>
+                                <Link
+                                  onClick={() =>
+                                    handleDisplay(
+                                      mealList[index + 1].description,
+                                      mealList[index + 1].mealName
+                                    )
+                                  }
+                                  to=""
+                                >
+                                  <p
+                                    className="text-dark text-center"
+                                    style={{
+                                      fontSize: "1.2rem",
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    Description
+                                  </p>
+                                </Link>
+                                <div className="mt-1 d-flex flex-column align-items-center">
+                                  <div className="mb-2">
+                                    <button
+                                      className="btn btn-primary btn-lg rounded-circle"
+                                      style={{
+                                        minWidth: "40px",
+                                        fontSize: "24px",
+                                      }}
+                                      onClick={() => remove(index + 1)}
+                                    >
+                                      -
+                                    </button>
+                                    <span
+                                      className="mx-2"
+                                      style={{
+                                        fontSize: "2rem",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      {mealNumbers[index + 1]}
+                                    </span>{" "}
+                                    <button
+                                      className="btn btn-primary rounded-circle btn-lg"
+                                      style={{
+                                        minWidth: "40px",
+                                        fontSize: "24px",
+                                      }}
+                                      onClick={() => add(index + 1)}
+                                    >
+                                      +
+                                    </button>
+                                    <p
+                                      className="text-dark text-center"
+                                      style={{
+                                        fontSize: "1.2rem",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      12.99
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )
+                    )}
+                  </div>
+
+                  <div className="row">
+                    <div className=" col py-2  d-flex align-items-center justify-content-center">
+                      <button
+                        className="btn btn-dark text-light btn-md"
+                        style={{ minWidth: "100px", fontSize: "20px" }}
+                        onClick={() => backToOrderPage()}
+                      >
+                        Back
+                      </button>
+                    </div>
+                    <div className=" col py-2  d-flex align-items-center justify-content-center">
+                      <button
+                        className="btn btn-dark text-light btn-md"
+                        style={{ minWidth: "40px", fontSize: "20px" }}
+                        onClick={() => handleCheckOut()}
+                      >
+                        Proceed
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </Row>
-        </Container>
-        {/* should probably remove 1st condition */}
-        {(numMealsSelected === 0 ||
-          !userSession.isLoggedIn() ||
-          userSession.getUser().id === "improper") && (
-          <PopUp
-            displayPopUp={displayPopUp}
-            setDisplayPopUp={setDisplayPopUp}
-            title={title}
-            body={body}
-          />
-        )}
-
-        <PopUp
-          displayPopUp={displayEnoughPopUp}
-          setDisplayPopUp={setDisplayEnoughPopUp}
-          title={titleEnough}
-          body={bodyEnough}
-        />
-
-        <UpSaleItems
-          displayPopUp={displayUpSale}
-          setDisplayPopUp={setDisplayUpSale}
-          cartPrice={cartPrice}
-          setCartPrice={setCartPrice}
-          cart={cart}
-          setCart={setCart}
-          zipCode={zipCode}
-          mealNumbers={mealNumbers}
-          setMealNumbers={setMealNumbers}
-          setLogIn={setLogIn}
-        />
-
-        <Payment
-          cart={cart}
-          setCart={setCart}
-          mealNumbers={mealNumbers}
-          cartPrice={cartPrice}
-          setCartPrice={setCartPrice}
-          setNumMealsSelected={setNumMealsSelected}
-          delivDate={delivDate}
-        />
+          </div>
+        </div>
       </section>
+
+      <Modal show={show} onHide={handleClose} style={{ fontFamily: "Signika" }}>
+        <Modal.Header closeButton>
+          <Modal.Title>{mealSelected}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{description}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <PopUp
+        displayPopUp={displayEnoughPopUp}
+        setDisplayPopUp={setDisplayEnoughPopUp}
+        title={titleEnough}
+        body={bodyEnough}
+      />
+
+      <Payment
+        cart={cart}
+        setCart={setCart}
+        mealNumbers={mealNumbers}
+        setMealNumbers={setMealNumbers}
+        cartPrice={cartPrice}
+        setCartPrice={setCartPrice}
+        setNumMealsSelected={setNumMealsSelected}
+        delivDate={delivDate}
+      />
+
+      <UpSaleItems
+        displayPopUp={displayUpSale}
+        setDisplayPopUp={setDisplayUpSale}
+        cartPrice={cartPrice}
+        setCartPrice={setCartPrice}
+        cart={cart}
+        setCart={setCart}
+        zipCode={zipCode}
+        mealNumbers={mealNumbers}
+        setMealNumbers={setMealNumbers}
+      />
     </>
   );
 };
