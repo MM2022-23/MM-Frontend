@@ -316,6 +316,17 @@ const UpSaleItems = ({
             {/* <hr /> */}
 
             {/* Final version below do NOT change it */}
+            {cart.map((item) => {
+              return (
+                <Row key={item.id}>
+                  <Col style={{ marginLeft: "100px", marginTop: "10px" }}>
+                    {/* <span>{mealNumbers[item.id]} </span> */}
+                    <span>{item.mealName}  ${item.price} x {mealNumbers[item.id]} </span>
+                    <br></br>
+                  </Col>
+                </Row>
+              );
+            })}
             <h5 className="text-center mt-4">{`${"Total $" + cartPrice}`}</h5>
 
             {/* UpSale Item things commented DO NOT REMOVE*/}
