@@ -60,7 +60,7 @@ const Chef = ({
                   style={{ width: "150px" }}
                 >
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                    src= {chefInfo.imgSrc}
                     alt="Generic placeholder image"
                     class="img-fluid img-thumbnail mt-4 mb-2"
                     style={{ width: "150px", zIndex: "1" }}
@@ -77,9 +77,9 @@ const Chef = ({
                   <p class="lead fw-normal mb-1">About</p>
                   <div class="p-4" style={{ backgroundColor: "#f8f9fa" }}>
                     <p class="font-italic mb-1">
-                      10+ years of experience in Cooking
+                      {chefInfo.description2}
                     </p>
-                    <p class="font-italic mb-1">Catered for 1000+ ocassions</p>
+                    {/* <p class="font-italic mb-1">Catered for 1000+ ocassions</p> */}
                   </div>
                 </div>
                 <p class="lead fw-normal mb-0 text-center">Select Meals</p>

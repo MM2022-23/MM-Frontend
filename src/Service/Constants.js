@@ -20,10 +20,11 @@ export const chefs = [
     id: 1,
     name: "Ramesh Mathur",
     locationOfService: "New Jersey",
-    description1: "20+ years of experience in Cooking",
-    description2: "Catered for 1000+ ocassions",
-    imgSrc:
-      "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
+    description1:
+      "Started cooking out of necessity 15 years ago, haven't stopped since!",
+    description2:
+      "15 Years of experience cooking North Indian dishes, catered for 3 events so far, and NJ local for the last 6 years. Thanks for checking out my page!",
+    imgSrc: require("../Resources/Chefs/Ramesh Mathur.png"),
     meals: [
       {
         id: 0,
@@ -31,12 +32,7 @@ export const chefs = [
         mealName: "Palak Paneer",
         description:
           "Soft paneer (a type of Indian cheese) cubes cooked in a creamy spinach gravy.",
-        content: [
-          "8oz Palak Paneer ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Palak Paneer ", "8oz Masala Rice", "Tandoor Roti"],
 
         price: 11.99,
       },
@@ -47,14 +43,7 @@ export const chefs = [
         mealName: "Paneer Tikka",
         description:
           "Marinated cubes of paneer (a type of Indian cheese) that are simmered in a rich and creamy tomato-based gravy.",
-        content: [
-          "8oz Paneer Tikka Masala",
-
-          "8oz Masala Rice",
-
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Paneer Tikka Masala", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
 
@@ -64,12 +53,7 @@ export const chefs = [
         mealName: "Chana Masala",
         description:
           "Chickpeas cooked in a spicy and tangy tomato-based gravy.",
-        content: [
-          "8oz Chana Masala ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Chana Masala ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
 
@@ -79,12 +63,7 @@ export const chefs = [
         mealName: "Bazigar Aloo Gobi",
         description:
           "A dry curry made with potatoes (aloo) and cauliflower (gobi) that are cooked together with a blend of aromatic spices.",
-        content: [
-          "8oz Aloo Gobi ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Aloo Gobi ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
       {
@@ -93,12 +72,7 @@ export const chefs = [
         mealName: "Best Baigan Bharta",
         description:
           "Grilled eggplant minced into curry consisting of authentic herbs and spices.",
-        content: [
-          "8oz Baigan Bharta ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Baigan Bharta ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
       {
@@ -107,174 +81,101 @@ export const chefs = [
         mealName: "Royal Rajma Express",
         description:
           "Kidney beans cooked in a spicy and tangy tomato-based gravy along with onions and spices.",
-        content: [
-          "8oz Rajma ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Rajma ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
-      /*{
-        id: 6,
-        img: "MangoDolly.png",
-        mealName: "Mango Dolly",
-        description:
-          "Delightfully creamy vanilla ice cream bar enveloped in a mango coating",
-        content: ["Mango dolly"],
-        price: 2,
-      },
-      {
-        id: 7,
-        img: "ChocoBar.png",
-        mealName: "Chocobar",
-        description:
-          "Savory ice cream bar with a vanilla ice cream center and chocolate exterior",
-        content: ["Chocobar"],
-        price: 2,
-      }, */
     ],
   },
   {
     id: 2,
-    name: "Rutvik Tambodia",
+    name: "Rohini Yadav",
     locationOfService: "New Jersey",
-    description1: "20+ years of experience in Cooking",
-    description2: "Catered for 1000+ ocassions",
-    imgSrc:
-      "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
-     meals: [
+    description1: "Mother of 2 and big time foodie turned chef!",
+    description2:
+      "Cooking for about 3 years now ever since finishing masters. Originally from Bihar but want to share my cooking with all. Feel free to let me know how you like it, thanks!",
+    imgSrc: require("../Resources/Chefs/Rohini Yadav.png"),
+    meals: [
       {
         id: 0,
-        img: "Palak Paneer.jpg",
-        mealName: "Palak Paneer",
+        img: "Rohini Special Pav.png",
+        mealName: "Vada Paav",
         description:
-          "Soft paneer (a type of Indian cheese) cubes cooked in a creamy spinach gravy.",
-        content: [
-          "8oz Palak Paneer ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+          "Vada Pav is a popular Indian street food made of a spicy potato fritter served inside a soft bread roll, often accompanied by flavorful chutneys. It's a delicious and portable snack known for its affordability and widespread availability in India.",
+        content: ["8oz Palak Paneer ", "8oz Masala Rice", "Tandoor Roti"],
 
-        price: 11.99,
+        price: 4.99,
       },
 
       {
         id: 1,
-        img: "Paneer Tikka.jpg",
-        mealName: "Paneer Tikka",
+        img: "Loaded Cauliflower Manchurian.png",
+        mealName: "Gobi Manchurian",
         description:
-          "Marinated cubes of paneer (a type of Indian cheese) that are simmered in a rich and creamy tomato-based gravy.",
-        content: [
-          "8oz Paneer Tikka Masala",
-
-          "8oz Masala Rice",
-
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
-        price: 11.99,
+          "Gobi Manchurian is a popular Indo-Chinese dish consisting of crispy cauliflower florets that are coated in a flavorful batter and deep-fried until golden brown. These fried cauliflower bites are then stir-fried in a savory and tangy Manchurian sauce, creating a delicious and slightly spicy appetizer or side dish.",
+        content: ["8oz Paneer Tikka Masala", "8oz Masala Rice", "Tandoor Roti"],
+        price: 8.99,
       },
 
       {
         id: 2,
-        img: "Chana Masala.jpg",
-        mealName: "Chana Masala",
+        img: "Spicy Chili Noodles.png",
+        mealName: "Spicy Chili Noodles ",
         description:
-          "Chickpeas cooked in a spicy and tangy tomato-based gravy.",
-        content: [
-          "8oz Chana Masala ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
-        price: 11.99,
+          "Spicy Chili Indian Noodles are a fiery and flavorful fusion dish that combines the essence of Indian spices with Chinese-style stir-fried noodles. These noodles feature a bold blend of spices, including chili, and are typically loaded with vegetables and protein, offering a zesty and satisfying culinary experience.",
+        content: ["8oz Chana Masala ", "8oz Masala Rice", "Tandoor Roti"],
+        price: 8.99,
       },
 
       {
         id: 3,
-        img: "Aloo Gobi.jpg",
-        mealName: "Bazigar Aloo Gobi",
+        img: "masala_rice.jpeg",
+        mealName: "Masala Rice",
         description:
-          "A dry curry made with potatoes (aloo) and cauliflower (gobi) that are cooked together with a blend of aromatic spices.",
-        content: [
-          "8oz Aloo Gobi ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
-        price: 11.99,
+          "Indian masala rice is a fragrant and flavorful dish made by sautéing cooked rice with a blend of aromatic spices like cumin, coriander, and turmeric, along with vegetables and sometimes protein like chicken or shrimp. It's a versatile and comforting dish that's enjoyed as a meal or accompaniment throughout India.",
+        content: ["8oz Aloo Gobi ", "8oz Masala Rice", "Tandoor Roti"],
+        price: 6.99,
       },
       {
         id: 4,
-        img: "Baigan Bharta.jpg",
-        mealName: "Best Baigan Bharta",
+        img: "Khadai Paneer.jpeg",
+        mealName: "Khadai Paneer",
         description:
-          "Grilled eggplant minced into curry consisting of authentic herbs and spices.",
-        content: [
-          "8oz Baigan Bharta ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
-        price: 11.99,
+          "Kadai Paneer is a popular North Indian dish made with cubes of paneer (Indian cottage cheese) cooked in a spicy tomato-based gravy with aromatic spices. It is often prepared in a special wok-like pan called a \"kadai,\" which imparts a unique smoky flavor to the dish.",
+        content: ["8oz Baigan Bharta ", "8oz Masala Rice", "Tandoor Roti"],
+        price: 14.50,
       },
-      {
-        id: 5,
-        img: "Rajma.jpg",
-        mealName: "Royal Rajma Express",
-        description:
-          "Kidney beans cooked in a spicy and tangy tomato-based gravy along with onions and spices.",
-        content: [
-          "8oz Rajma ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
-        price: 11.99,
-      },
-      /*{
-        id: 6,
-        img: "MangoDolly.png",
-        mealName: "Mango Dolly",
-        description:
-          "Delightfully creamy vanilla ice cream bar enveloped in a mango coating",
-        content: ["Mango dolly"],
-        price: 2,
-      },
-      {
-        id: 7,
-        img: "ChocoBar.png",
-        mealName: "Chocobar",
-        description:
-          "Savory ice cream bar with a vanilla ice cream center and chocolate exterior",
-        content: ["Chocobar"],
-        price: 2,
-      }, */
+      // {
+      //   id: 5,
+      //   img: "Rajma.jpg",
+      //   mealName: "Royal Rajma Express",
+      //   description:
+      //     "Kidney beans cooked in a spicy and tangy tomato-based gravy along with onions and spices.",
+      //   content: [
+      //     "8oz Rajma ",
+      //     "8oz Masala Rice",
+      //     "Tandoor Roti",
+      //   ],
+      //   price: 11.99,
+      // },
     ],
   },
+  
   {
     id: 3,
-    name: "Kevin Taang",
+    name: "Aahan Bajwa",
     locationOfService: "New Jersey",
-    description1: "20+ years of experience in Cooking",
-    description2: "Catered for 1000+ ocassions",
-    imgSrc:
-      "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp",
-     meals: [
+    description1: "Amateur at cooking so let's enjoy together",
+    description2:
+      "Grew up near Bridgewater and now in Edison for work, thanks for checking out my items! ",
+    imgSrc: require("../Resources/Chefs/Aahan Bajwa .png"),
+    meals: [
       {
         id: 0,
         img: "Palak Paneer.jpg",
         mealName: "Palak Paneer",
         description:
           "Soft paneer (a type of Indian cheese) cubes cooked in a creamy spinach gravy.",
-        content: [
-          "8oz Palak Paneer ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Palak Paneer ", "8oz Masala Rice", "Tandoor Roti"],
 
         price: 11.99,
       },
@@ -285,14 +186,7 @@ export const chefs = [
         mealName: "Paneer Tikka",
         description:
           "Marinated cubes of paneer (a type of Indian cheese) that are simmered in a rich and creamy tomato-based gravy.",
-        content: [
-          "8oz Paneer Tikka Masala",
-
-          "8oz Masala Rice",
-
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Paneer Tikka Masala", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
 
@@ -302,12 +196,7 @@ export const chefs = [
         mealName: "Chana Masala",
         description:
           "Chickpeas cooked in a spicy and tangy tomato-based gravy.",
-        content: [
-          "8oz Chana Masala ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Chana Masala ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
 
@@ -317,12 +206,7 @@ export const chefs = [
         mealName: "Bazigar Aloo Gobi",
         description:
           "A dry curry made with potatoes (aloo) and cauliflower (gobi) that are cooked together with a blend of aromatic spices.",
-        content: [
-          "8oz Aloo Gobi ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Aloo Gobi ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
       {
@@ -331,12 +215,7 @@ export const chefs = [
         mealName: "Best Baigan Bharta",
         description:
           "Grilled eggplant minced into curry consisting of authentic herbs and spices.",
-        content: [
-          "8oz Baigan Bharta ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Baigan Bharta ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
       {
@@ -345,32 +224,9 @@ export const chefs = [
         mealName: "Royal Rajma Express",
         description:
           "Kidney beans cooked in a spicy and tangy tomato-based gravy along with onions and spices.",
-        content: [
-          "8oz Rajma ",
-          "8oz Masala Rice",
-          "Tandoor Roti",
-          // "6oz Amul Buttermilk Drink",
-        ],
+        content: ["8oz Rajma ", "8oz Masala Rice", "Tandoor Roti"],
         price: 11.99,
       },
-      /*{
-        id: 6,
-        img: "MangoDolly.png",
-        mealName: "Mango Dolly",
-        description:
-          "Delightfully creamy vanilla ice cream bar enveloped in a mango coating",
-        content: ["Mango dolly"],
-        price: 2,
-      },
-      {
-        id: 7,
-        img: "ChocoBar.png",
-        mealName: "Chocobar",
-        description:
-          "Savory ice cream bar with a vanilla ice cream center and chocolate exterior",
-        content: ["Chocobar"],
-        price: 2,
-      }, */
     ],
   },
 ];

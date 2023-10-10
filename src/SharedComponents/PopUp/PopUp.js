@@ -15,8 +15,8 @@ const PopUp = ({ displayPopUp, setDisplayPopUp, title, body }) => {
       <Modal.Body>{body}</Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => setDisplayPopUp(false)}>
-          <span className="text-primary">Close</span>
+        <Button variant="dark" onClick={() => setDisplayPopUp(false)}>
+          <span className="text-light">Close</span>
         </Button>
       </Modal.Footer>
     </Modal>

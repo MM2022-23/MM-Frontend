@@ -55,7 +55,7 @@ const PickMeals = ({
     console.log(`Meal Numbers: ${mealNumbers}`);
   }, []);
 
-  const mealList = MealData.getMeals();
+  const mealList = chefInfo.meals;
 
   // pop up to show description/ingridents to users
   const [show, setShow] = useState(false);
@@ -233,14 +233,14 @@ const PickMeals = ({
               <div class="card">
                 <div
                   class="rounded-top text-white d-flex flex-row"
-                  style={{ backgroundColor: "#f5deb3", height: "200px" }}
+                  style={{ backgroundColor: "rgba(216,255,218,1)", height: "200px" }}
                 >
                   <div
                     class="ms-4 mt-5 d-flex flex-column"
                     style={{ width: "150px" }}
                   >
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                      src={chefInfo.imgSrc}
                       alt="Generic placeholder image"
                       class="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: "150px", zIndex: "1" }}
@@ -248,7 +248,7 @@ const PickMeals = ({
                   </div>
                   <div class="ms-3" style={{ marginTop: "30px" }}>
                     <h5 className="text-dark">{chefInfo.name}</h5>
-                    <p className="text-secondary">
+                    <p className="text-dark">
                       {chefInfo.locationOfService}
                     </p>
                   </div>
@@ -259,11 +259,11 @@ const PickMeals = ({
                     <p class="lead fw-normal mb-1">About</p>
                     <div class="p-4" style={{ backgroundColor: "#f8f9fa" }}>
                       <p class="font-italic mb-1">
-                        10+ years of experience in Cooking
+                        {chefInfo.description2}
                       </p>
-                      <p class="font-italic mb-1">
+                      {/* <p class="font-italic mb-1">
                         Catered for 1000+ ocassions
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                   <p class="lead fw-normal mb-0 text-center">Select Meals</p>
@@ -334,7 +334,7 @@ const PickMeals = ({
                                       fontWeight: "bold",
                                     }}
                                   >
-                                    12.99
+                                    ${meal.price}
                                   </p>
                                 </div>
                               </div>
@@ -409,7 +409,7 @@ const PickMeals = ({
                                         fontWeight: "bold",
                                       }}
                                     >
-                                      12.99
+                                      ${mealList[index + 1].price}
                                     </p>
                                   </div>
                                 </div>
