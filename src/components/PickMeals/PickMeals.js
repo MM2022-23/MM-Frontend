@@ -125,7 +125,7 @@ const PickMeals = ({
     setCartPrice(
       (cartPrice) =>
         Math.round(
-          (cartPrice + MealData.getMeals()[idNum].price + Number.EPSILON) * 100
+          (cartPrice + mealList[idNum].price + Number.EPSILON) * 100
         ) / 100
     );
     // will have to add PRICE
@@ -183,7 +183,7 @@ const PickMeals = ({
       setCartPrice(
         (cartPrice) =>
           Math.round(
-            (cartPrice - MealData.getMeals()[id].price + Number.EPSILON) * 100
+            (cartPrice - mealList[id].price + Number.EPSILON) * 100
           ) / 100
       );
       mealNumbers[id]--; // decrement quantity in mealNumbers at index "id"
