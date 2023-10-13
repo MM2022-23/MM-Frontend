@@ -44,7 +44,7 @@ const PickMeals = ({
   const navigate = useNavigate();
 
   const { chefId } = useParams();
-  const chefInfo = chefs[chefId - 1];
+  const chefInfo = chefs[chefId ? chefId : 2 - 1];
   const mealList = chefInfo.meals;
   useEffect(() => {
     // scroll up only once when user arrives on this page
@@ -55,8 +55,6 @@ const PickMeals = ({
     }
     console.log(`Meal Numbers: ${mealNumbers}`);
   }, []);
-
-  
 
   // pop up to show description/ingridents to users
   const [show, setShow] = useState(false);
