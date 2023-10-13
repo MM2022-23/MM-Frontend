@@ -369,9 +369,9 @@ const OrderPage = ({
                 </Button>
               </div> */}
 
-              <div class="container justify-content-center text-center">
+              <div className="container justify-content-center text-center">
                 <Link to="/chefs">
-                  <button class="btn btn-dark btn-lg btn-block">
+                  <button className="btn btn-dark btn-lg btn-block">
                     Continue
                   </button>
                 </Link>

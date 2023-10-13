@@ -46,48 +46,45 @@ const Chef = ({
     }
   };
   return (
-    <section class="h-100 gradient-custom-2">
-      <div class="container py-5 h-100">    
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col col-lg-9 col-xl-7">
-            <div class="card">
+    <section className="h-100 gradient-custom-2">
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col col-lg-9 col-xl-7">
+            <div className="card">
               <div
-                class="rounded-top text-white d-flex flex-row"
+                className="rounded-top text-white d-flex flex-row"
                 style={{ backgroundColor: "#f5deb3", height: "200px" }}
               >
                 <div
-                  class="ms-4 mt-5 d-flex flex-column"
+                  className="ms-4 mt-5 d-flex flex-column"
                   style={{ width: "150px" }}
                 >
                   <img
-                    src= {chefInfo.imgSrc}
+                    src={chefInfo.imgSrc}
                     alt="Generic placeholder image"
-                    class="img-fluid img-thumbnail mt-4 mb-2"
+                    className="img-fluid img-thumbnail mt-4 mb-2"
                     style={{ width: "150px", zIndex: "1" }}
                   />
                 </div>
-                <div class="ms-3" style={{ marginTop: "30px" }}>
+                <div className="ms-3" style={{ marginTop: "30px" }}>
                   <h5 className="text-dark">{chefInfo.name}</h5>
                   <p className="text-secondary">{chefInfo.locationOfService}</p>
                 </div>
               </div>
 
-              <div class="card-body p-4 text-black">
-                <div class="mb-5">
-                  <p class="lead fw-normal mb-1">About</p>
-                  <div class="p-4" style={{ backgroundColor: "#f8f9fa" }}>
-                    <p class="font-italic mb-1">
-                      {chefInfo.description2}
-                    </p>
-                    {/* <p class="font-italic mb-1">Catered for 1000+ ocassions</p> */}
+              <div className="card-body p-4 text-black">
+                <div className="mb-5">
+                  <p className="lead fw-normal mb-1">About</p>
+                  <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
+                    <p className="font-italic mb-1">{chefInfo.description2}</p>
+                    {/* <p className="font-italic mb-1">Catered for 1000+ ocassions</p> */}
                   </div>
                 </div>
-                <p class="lead fw-normal mb-0 text-center">Select Meals</p>
-
+                <p className="lead fw-normal mb-0 text-center">Select Meals</p>
 
                 {/* Meals */}
 
-                <div class="row g-2">
+                <div className="row g-2">
                   {meals.map(
                     (meal, index) =>
                       index % 2 === 0 && (
@@ -215,7 +212,7 @@ const Chef = ({
                       )
                   )}
                 </div>
-                
+
                 <div className="row">
                   <div className="h-100 d-flex align-items-center justify-content-center">
                     <button
@@ -226,7 +223,6 @@ const Chef = ({
                     </button>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

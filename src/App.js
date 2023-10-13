@@ -22,14 +22,12 @@ import TermsAndCondition from "./components/TermsAndCondition/TermsAndCondition"
 import RefundsAndCancellationsPolicy from "./components/RefundsAndCancellationsPolicy/RefundsAndCancellationsPolicy";
 import DataCollectionAPI from "./Service/APICalls/DataCollectionAPIService";
 import AdminPortal from "./components/AdminPortal/AdminPortal";
-import ReactGA from "react-ga4";
-import { TRACKINGID } from "./Service/Constants";
+
 import DA from "./components/DA/DA";
 import MealsChefList from "./components/ChefLists/MealsChefList";
 import Chef from "./components/ChefLists/Chef/Chef";
 import Profile from "./components/Profile/Profile";
 
-ReactGA.initialize(TRACKINGID);
 function App() {
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -70,35 +68,37 @@ function App() {
   const [scrollFAQ, setScrollFAQ] = useState(false);
 
   const navAndFoot = (element) => {
-    return (
-      <>
-        <Nav
-          loggedIn={loggedIn}
-          setLogIn={setLogIn}
-          cart={cart}
-          setCart={setCart}
-          mealNumbers={mealNumbers}
-          setMealNumbers={setMealNumbers}
-          totalPrice={totalPrice}
-          setTotalPrice={setTotalPrice}
-          cartPrice={cartPrice}
-          setCartPrice={setCartPrice}
-          numMeals={numMeals}
-          numMealsSelected={numMealsSelected}
-          setNumMealsSelected={setNumMealsSelected}
-          scrollFAQ={scrollFAQ}
-          setScrollFAQ={setScrollFAQ}
-          delivDate={delivDate}
-          zipcode={zipCode}
-        />
+    // return (
+    //   <>
+    //     <Nav
+    //       loggedIn={loggedIn}
+    //       setLogIn={setLogIn}
+    //       cart={cart}
+    //       setCart={setCart}
+    //       mealNumbers={mealNumbers}
+    //       setMealNumbers={setMealNumbers}
+    //       totalPrice={totalPrice}
+    //       setTotalPrice={setTotalPrice}
+    //       cartPrice={cartPrice}
+    //       setCartPrice={setCartPrice}
+    //       numMeals={numMeals}
+    //       numMealsSelected={numMealsSelected}
+    //       setNumMealsSelected={setNumMealsSelected}
+    //       scrollFAQ={scrollFAQ}
+    //       setScrollFAQ={setScrollFAQ}
+    //       delivDate={delivDate}
+    //       zipcode={zipCode}
+    //     />
 
-        {/* to make nav sticked to top */}
-        <section className="stickNavBarAdjustments"></section>
-        {/* About, Home, Help,... */}
-        {element}
-        <Footer />
-      </>
-    );
+    //     {/* to make nav sticked to top */}
+    //     <section className="stickNavBarAdjustments"></section>
+    //     {/* About, Home, Help,... */}
+    //     {element}
+    //     <Footer />
+    //   </>
+    
+    // );
+    return element 
   };
 
   return (
@@ -162,29 +162,10 @@ function App() {
 
         <Route exact path="/profile" element={navAndFoot(<Profile />)} />
 
-        {/* <Route
-          exact
-          path="/chef/:id"
-          element={navAndFoot(
-            <Chef
-              zipCode={zipCode}
-              cart={cart}
-              setCart={setCart}
-              totalPrice={totalPrice}
-              setTotalPrice={setTotalPrice}
-              numMealsSelected={numMealsSelected}
-              setNumMealsSelected={setNumMealsSelected}
-              numMeals={numMeals}
-              cartPrice={cartPrice}
-              setCartPrice={setCartPrice}
-            />
-          )}
-        /> */}
+       
 
-        {/* PickMeals page */}
+        {/* Chef profile & meals to buy */}
         <Route
-          // exact
-          // path="/pickMeals"
           path="/chef/:id"
           element={navAndFoot(
             <PickMeals

@@ -43,8 +43,9 @@ const PickMeals = ({
   // so we can go back to orderPage
   const navigate = useNavigate();
 
-  const { id } = useParams();
-  const chefInfo = chefs[id - 1];
+  const { chefId } = useParams();
+  const chefInfo = chefs[chefId - 1];
+  const mealList = chefInfo.meals;
   useEffect(() => {
     // scroll up only once when user arrives on this page
     ScrollTop.scrollUp();
@@ -55,7 +56,7 @@ const PickMeals = ({
     console.log(`Meal Numbers: ${mealNumbers}`);
   }, []);
 
-  const mealList = chefInfo.meals;
+  
 
   // pop up to show description/ingridents to users
   const [show, setShow] = useState(false);
@@ -124,12 +125,12 @@ const PickMeals = ({
     setNumMealsSelected((numMealsSelected) => numMealsSelected + 1);
     setCartPrice(
       (cartPrice) =>
-        Math.round(
-          (cartPrice + mealList[idNum].price + Number.EPSILON) * 100
-        ) / 100
+        Math.round((cartPrice + mealList[idNum].price + Number.EPSILON) * 100) /
+        100
     );
     // will have to add PRICE
     const addToCart = {
+      chefId: chefId,
       id: idNum,
       mealName: mealList[idNum].mealName,
       description: mealList[idNum].description,
@@ -182,9 +183,8 @@ const PickMeals = ({
       setNumMealsSelected((numMealsSelected) => numMealsSelected - 1);
       setCartPrice(
         (cartPrice) =>
-          Math.round(
-            (cartPrice - mealList[id].price + Number.EPSILON) * 100
-          ) / 100
+          Math.round((cartPrice - mealList[id].price + Number.EPSILON) * 100) /
+          100
       );
       mealNumbers[id]--; // decrement quantity in mealNumbers at index "id"
       const newAr = [];
@@ -226,48 +226,51 @@ const PickMeals = ({
 
   return (
     <>
-      <section class="h-100 gradient-custom-2">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-9 col-xl-7">
-              <div class="card">
+      <section className="h-100 gradient-custom-2">
+        <div className="container py-5 h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col col-lg-9 col-xl-7">
+              <div className="card">
                 <div
-                  class="rounded-top text-white d-flex flex-row"
-                  style={{ backgroundColor: "rgba(216,255,218,1)", height: "200px" }}
+                  className="rounded-top text-white d-flex flex-row"
+                  style={{
+                    backgroundColor: "rgba(216,255,218,1)",
+                    height: "200px",
+                  }}
                 >
                   <div
-                    class="ms-4 mt-5 d-flex flex-column"
+                    className="ms-4 mt-5 d-flex flex-column"
                     style={{ width: "150px" }}
                   >
                     <img
                       src={chefInfo.imgSrc}
                       alt="Generic placeholder image"
-                      class="img-fluid img-thumbnail mt-4 mb-2"
+                      className="img-fluid img-thumbnail mt-4 mb-2"
                       style={{ width: "150px", zIndex: "1" }}
                     />
                   </div>
-                  <div class="ms-3" style={{ marginTop: "30px" }}>
+                  <div className="ms-3" style={{ marginTop: "30px" }}>
                     <h5 className="text-dark">{chefInfo.name}</h5>
-                    <p className="text-dark">
-                      {chefInfo.locationOfService}
-                    </p>
+                    <p className="text-dark">{chefInfo.locationOfService}</p>
                   </div>
                 </div>
 
-                <div class="card-body p-4 text-black">
-                  <div class="mb-5">
-                    <p class="lead fw-normal mb-1">About</p>
-                    <div class="p-4" style={{ backgroundColor: "#f8f9fa" }}>
-                      <p class="font-italic mb-1">
+                <div className="card-body p-4 text-black">
+                  <div className="mb-5">
+                    <p className="lead fw-normal mb-1">About</p>
+                    <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
+                      <p className="font-italic mb-1">
                         {chefInfo.description2}
                       </p>
-                      {/* <p class="font-italic mb-1">
+                      {/* <p className="font-italic mb-1">
                         Catered for 1000+ ocassions
                       </p> */}
                     </div>
                   </div>
-                  <p class="lead fw-normal mb-0 text-center">Select Meals</p>
-                  <div class="row g-2">
+                  <p className="lead fw-normal mb-0 text-center">
+                    Select Meals
+                  </p>
+                  <div className="row g-2">
                     {mealList.map(
                       (meal, index) =>
                         index % 2 === 0 && (

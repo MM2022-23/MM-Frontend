@@ -35,21 +35,6 @@ const Home = ({
   const useLoc = useLocation();
 
   useEffect(() => {
-    const pathname = window.location.hash;
-    // // coming from fb
-    if (pathname.includes("#/") && pathname.split("#/")[1].length !== 0) {
-      // console.log("Coming from FB");
-      userSession.addSessionID(pathname.split("#/")[1]);
-    } else {
-      // console.log("Coming 1st time");
-
-      // Coming 1st time
-      if (!pathname.includes("#") && !userSession.getSessionID()) {
-        userSession.addSessionID("Not From FB");
-      } else if (!userSession.getSessionID()) {
-        userSession.addSessionID("Not From FB");
-      }
-    }
 
     if (scrollFAQ) {
       // console.log("Down!!!");

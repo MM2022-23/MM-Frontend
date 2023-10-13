@@ -66,16 +66,16 @@ const Showcase = ({
               <Row>
                 <Col>
                   <Link to="/chefs">
-                    <button class="btn btn-primary btn-lg btn-block">
+                    <button className="btn btn-primary btn-lg btn-block">
                       Search
                     </button>
                   </Link>
                 </Col>
               </Row> */}
 
-            {/* <div class="container justify-content-center text-center">
+            {/* <div className="container justify-content-center text-center">
                 <Link to="/chefs">
-                  <button class="btn btn-dark btn-lg btn-block">
+                  <button className="btn btn-dark btn-lg btn-block">
                     Continue
                   </button>
                 </Link>

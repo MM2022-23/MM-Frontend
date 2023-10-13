@@ -495,7 +495,11 @@ const AdminPortal = () => {
     if (ordersNoSignUps === null) {
       return <p className="text-center">Loading...</p>;
     } else if (ordersNoSignUps.length === 0) {
-      return <p className="text-center">No Orders Yet For Customers without Sign Ups</p>;
+      return (
+        <p className="text-center">
+          No Orders Yet For Customers without Sign Ups
+        </p>
+      );
     } else {
       return (
         <>
@@ -588,9 +592,9 @@ const AdminPortal = () => {
           Log Out
         </Button>
 
-        <div class="d-flex align-items-center">
-          <div class="container">
-            <div class="col-12 text-center">
+        <div className="d-flex align-items-center">
+          <div className="container">
+            <div className="col-12 text-center">
               <div>
                 <input
                   type="number"
@@ -625,7 +629,7 @@ const AdminPortal = () => {
               </div>
               <div style={{ marginTop: "1vh", marginBottom: "1vh" }}>
                 <button
-                  class="btn btn-light"
+                  className="btn btn-light"
                   style={{ width: "9vw", fontSize: "2vw", padding: "1px" }}
                   onClick={(e) => {
                     e.preventDefault();
@@ -637,7 +641,7 @@ const AdminPortal = () => {
                   All
                 </button>
                 <button
-                  class="btn btn-light"
+                  className="btn btn-light"
                   style={{
                     marginLeft: "3vw",
                     width: "9vw",

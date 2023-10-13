@@ -17,15 +17,15 @@ const MealsChefList = () => {
   }, []);
   const tempList = () => {
     return (
-      <div class="card" style={{ width: "18rem" }}>
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
+      <div className="card" style={{ width: "18rem" }}>
+        <img src="..." className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">Card title</h5>
+          <p className="card-text">
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <a href="#" class="btn btn-primary">
+          <a href="#" className="btn btn-primary">
             Go somewhere
           </a>
         </div>
@@ -34,32 +34,32 @@ const MealsChefList = () => {
   };
   const list = () => {
     return (
-      <section class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded">
+      <section className="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded">
         {chefs.map((chef) => (
-          <div class="row  justify-content-center">
-            <div class="">
-              <div class="card">
-                <div class="card-body m-3">
-                  <div class="row">
-                    <div class="col-lg-4 justify-content-center align-items-center mb-4 mb-lg-0">
+          <div className="row  justify-content-center">
+            <div className="">
+              <div className="card">
+                <div className="card-body m-3">
+                  <div className="row">
+                    <div className="col-lg-4 justify-content-center align-items-center mb-4 mb-lg-0">
                       <img
                         src={chef.imgSrc}
-                        class="rounded-circle img-fluid shadow-1"
+                        className="rounded-circle img-fluid shadow-1"
                         alt="woman avatar"
                         width="200"
                         height="200"
                       />
                     </div>
-                    <div class="col-lg-8">
-                      <p class="text-muted fw-light mb-4">
+                    <div className="col-lg-8">
+                      <p className="text-muted fw-light mb-4">
                         {chef.description1}
                       </p>
-                      <p class="fw-bold lead mb-2">
+                      <p className="fw-bold lead mb-2">
                         <strong>{chef.name}</strong>
                       </p>
-                      <div class="row">
+                      <div className="row">
                         <Link to={`/chef/${chef.id}`}>
-                          <button class="btn btn-dark text-center justify-content-center">
+                          <button className="btn btn-dark text-center justify-content-center">
                             View
                           </button>
                         </Link>
